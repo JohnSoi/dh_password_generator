@@ -1,12 +1,23 @@
-[tool.poetry]
+[project]
 name = "dh-password-generator"
 version = "0.1.0"
 description = "Генератор паролей с различным сочетанием символов идлинны"
-authors = ["JohnSoi <un.perso@yandex.ru>"]
+authors = [
+    {name = "John_Soi",email = "un.perso@yandex.ru"}
+]
 readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.12"
+
+[tool.poetry]
+packages = [{include = "dh_password_generator"}]
+
+[tool.poetry.group.dev.dependencies]
+isort = "^6.1.0"
+black = "^25.9.0"
+pylint = "^3.3.9"
+pyright = "^1.1.406"
 
 
 [build-system]

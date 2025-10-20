@@ -1,14 +1,41 @@
+# pylint: disable=too-few-public-methods
+"""Константы пакета генератора паролей"""
+
+__author__: str = "Digital Horizons"
+
 import string
 from typing import Callable
 
 
 class Settings:
+    """
+    Настройки генератора
+
+    :cvar MIN_PASSWORD_LENGTH: минимальная длинна для генерации пароля
+    :type MIN_PASSWORD_LENGTH: int
+    :cvar MAX_PASSWORD_LENGTH: максимальная длинна для генерации пароля
+    :type MAX_PASSWORD_LENGTH: int
+    :cvar MIN_STRONG_PASSWORD_LENGTH: минимальная длинна пароля для повышенной сложности
+    :type MIN_STRONG_PASSWORD_LENGTH: int
+    """
     MIN_PASSWORD_LENGTH: int = 4
     MAX_PASSWORD_LENGTH: int = 20
     MIN_STRONG_PASSWORD_LENGTH: int = 12
 
 
 class DefaultValueParams:
+    """
+    Дефолтные параметры для запуска генератора
+
+    :cvar LENGTH: базовая длинна генерации пароля
+    :type LENGTH: int
+    :cvar ALPHABET: использовать буквы для генерации
+    :type ALPHABET: bool
+    :cvar DIGITS: использовать цифры для генерации
+    :type DIGITS: bool
+    :cvar SPECIAL: использовать спецсимволы для генерации
+    :type SPECIAL: bool
+    """
     LENGTH: int = 8
     ALPHABET: bool = True
     DIGITS: bool = True
@@ -16,18 +43,29 @@ class DefaultValueParams:
 
 
 class Symbols:
+    """
+    Списки символом по группам
+
+    :cvar ALPHABET: буквы для генерации
+    :type ALPHABET: list[str]
+    :cvar DIGITS: цифры для генерации
+    :type DIGITS: list[str]
+    :cvar SPECIAL: специальные символы для генерации
+    :type SPECIAL: list[str]
+    """
     ALPHABET: list[str] = string.ascii_letters
     DIGITS: list[str] = string.digits
     SPECIAL: list[str] = string.punctuation
 
 
+# Человекочитаемы названия для групп
 HUMAN_SYMBOLS_GROUP_NAME: dict[str, str] = {
     "ALPHABET": "букв",
     "DIGITS": "цифр",
     "SPECIAL": "спец. символов"
 }
 
-
+# Карта консольных аргументов для парсера из консоли
 CONSOLE_ARGS_MAP: list[dict[str, str | Callable | list[str]]] = [
     {
         "flags": ["-l", "--length"],
