@@ -2,7 +2,7 @@
 
 __author__: str = "Digital Horizons"
 
-from argparse import Namespace, ArgumentParser
+from argparse import Namespace, ArgumentParser, BooleanOptionalAction
 
 from dh_password_generator.consts import (
     CONSOLE_ARGS_MAP,
@@ -86,10 +86,17 @@ class GeneratorParams:
         )
 
         for args in CONSOLE_ARGS_MAP:
+            params: dict = {
+                "type": args["type"],  # pyright:ignore
+                "help": (args["help"])
+            }
+
+            if args.get("is_bool"):
+                params["action"] = BooleanOptionalAction
+
             parser.add_argument(
-                *args["flags"], # pyright:ignore
-                type=args["type"], # pyright:ignore
-                help=(args["help"]) # pyright:ignore
+                *args["flags"],
+                **params
             )
 
         return parser
@@ -112,7 +119,7 @@ class GeneratorParams:
         if not length:
             raise ValueError("Нельзя сгенерировать пароль с 0 длинной")
 
-        if Settings.MIN_PASSWORD_LENGTH > length > Settings.MAX_PASSWORD_LENGTH:
+        if length < Settings.MIN_PASSWORD_LENGTH or length > Settings.MAX_PASSWORD_LENGTH:
             raise ValueError(
                 f'Длинна пароля должна быть в диапазоне от "{Settings.MIN_PASSWORD_LENGTH}" '
                 f'до "{Settings.MAX_PASSWORD_LENGTH}" символов.'
@@ -132,10 +139,15 @@ class GeneratorParams:
         """
         symbols_group: list[str] = []
 
+        has_groups_in_params: bool = False
+
+        for group in list(filter(lambda item: item.isupper(), dir(Symbols))):
+            has_groups_in_params = has_groups_in_params or getattr(console_args, group.lower())
+
         for group in list(filter(lambda item: item.isupper(), dir(Symbols))):
             need_add_group: bool | None = getattr(console_args, group.lower())
 
-            if need_add_group is None:
+            if need_add_group is None and not has_groups_in_params:
                 need_add_group = getattr(DefaultValueParams, group)
 
             if need_add_group:

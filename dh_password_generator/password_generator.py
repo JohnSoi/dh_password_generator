@@ -94,10 +94,7 @@ class PasswordGenerator:
         """
         while True:
             temp_group: str = choice(self._params.symbols_group)
-
-            if used_groups.count(temp_group) >= (
-                len(self._params.symbols_group) / 2 * (self._params.length / len(self._params.symbols_group))
-            ):
+            if used_groups.count(temp_group) >= (self._params.length / len(self._params.symbols_group) + 1):
                 continue
 
             used_groups.append(temp_group)

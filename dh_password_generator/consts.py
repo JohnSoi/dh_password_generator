@@ -69,7 +69,7 @@ HUMAN_SYMBOLS_GROUP_NAME: dict[str, str] = {
 }
 
 # Карта консольных аргументов для парсера из консоли
-CONSOLE_ARGS_MAP: list[dict[str, str | Callable | list[str]]] = [
+CONSOLE_ARGS_MAP: list[dict[str, str | Callable | list[str]] | bool] = [
     {
         "flags": ["-l", "--length"],
         "type": int,
@@ -81,17 +81,20 @@ CONSOLE_ARGS_MAP: list[dict[str, str | Callable | list[str]]] = [
         "type": bool,
         "help": f"Использовать буквы в генерации пароля. "
         f"По умолчанию используется значение {DefaultValueParams.ALPHABET}",
+        "is_bool": True
     },
     {
         "flags": ["-d", "--digits"],
         "type": bool,
         "help": f"Использовать цифры в генерации пароля. "
         f"По умолчанию используется значение {DefaultValueParams.DIGITS}",
+        "is_bool": True
     },
     {
         "flags": ["-s", "--special"],
         "type": bool,
         "help": f"Использовать спецсимволы в генерации пароля. "
         f"По умолчанию используется значение {DefaultValueParams.SPECIAL}",
+        "is_bool": True
     },
 ]
