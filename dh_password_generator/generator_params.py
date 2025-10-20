@@ -4,8 +4,13 @@ __author__: str = "Digital Horizons"
 
 from argparse import Namespace, ArgumentParser
 
-from dh_password_generator.consts import Symbols, DefaultValueParams, CONSOLE_ARGS_MAP, Settings, \
-    HUMAN_SYMBOLS_GROUP_NAME
+from dh_password_generator.consts import (
+    CONSOLE_ARGS_MAP,
+    HUMAN_SYMBOLS_GROUP_NAME,
+    Symbols,
+    Settings,
+    DefaultValueParams,
+)
 
 
 class GeneratorParams:
@@ -17,6 +22,7 @@ class GeneratorParams:
     :ivar _symbols_group: список использованных групп символов
     :type _symbols_group: list[str]
     """
+
     def __init__(self) -> None:
         self._get_params()
 
@@ -76,7 +82,7 @@ class GeneratorParams:
         """
         parser: ArgumentParser = ArgumentParser(
             description="Генерация пароля заданной длинны с использованием заданных групп "
-                        "символов и итоговой оценкой сложности"
+            "символов и итоговой оценкой сложности"
         )
 
         for args in CONSOLE_ARGS_MAP:
@@ -132,6 +138,6 @@ class GeneratorParams:
                 symbols_group.append(group)
 
         if not symbols_group:
-            raise ValueError('Нельзя сгенерировать пароль из ничего!')
+            raise ValueError("Нельзя сгенерировать пароль из ничего!")
 
         return symbols_group

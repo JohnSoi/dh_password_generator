@@ -18,6 +18,7 @@ class Settings:
     :cvar MIN_STRONG_PASSWORD_LENGTH: минимальная длинна пароля для повышенной сложности
     :type MIN_STRONG_PASSWORD_LENGTH: int
     """
+
     MIN_PASSWORD_LENGTH: int = 4
     MAX_PASSWORD_LENGTH: int = 20
     MIN_STRONG_PASSWORD_LENGTH: int = 12
@@ -36,6 +37,7 @@ class DefaultValueParams:
     :cvar SPECIAL: использовать спецсимволы для генерации
     :type SPECIAL: bool
     """
+
     LENGTH: int = 8
     ALPHABET: bool = True
     DIGITS: bool = True
@@ -53,6 +55,7 @@ class Symbols:
     :cvar SPECIAL: специальные символы для генерации
     :type SPECIAL: list[str]
     """
+
     ALPHABET: list[str] = string.ascii_letters
     DIGITS: list[str] = string.digits
     SPECIAL: list[str] = string.punctuation
@@ -62,7 +65,7 @@ class Symbols:
 HUMAN_SYMBOLS_GROUP_NAME: dict[str, str] = {
     "ALPHABET": "букв",
     "DIGITS": "цифр",
-    "SPECIAL": "спец. символов"
+    "SPECIAL": "спец. символов",
 }
 
 # Карта консольных аргументов для парсера из консоли
@@ -71,24 +74,24 @@ CONSOLE_ARGS_MAP: list[dict[str, str | Callable | list[str]]] = [
         "flags": ["-l", "--length"],
         "type": int,
         "help": f"Длинна генерируемого пароля. "
-                f"По умолчанию используется значение {DefaultValueParams.LENGTH} символов",
+        f"По умолчанию используется значение {DefaultValueParams.LENGTH} символов",
     },
     {
         "flags": ["-a", "--alphabet"],
         "type": bool,
         "help": f"Использовать буквы в генерации пароля. "
-                f"По умолчанию используется значение {DefaultValueParams.ALPHABET}",
+        f"По умолчанию используется значение {DefaultValueParams.ALPHABET}",
     },
     {
         "flags": ["-d", "--digits"],
         "type": bool,
         "help": f"Использовать цифры в генерации пароля. "
-                f"По умолчанию используется значение {DefaultValueParams.DIGITS}",
+        f"По умолчанию используется значение {DefaultValueParams.DIGITS}",
     },
     {
         "flags": ["-s", "--special"],
         "type": bool,
         "help": f"Использовать спецсимволы в генерации пароля. "
-                f"По умолчанию используется значение {DefaultValueParams.SPECIAL}",
+        f"По умолчанию используется значение {DefaultValueParams.SPECIAL}",
     },
 ]

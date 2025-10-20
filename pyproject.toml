@@ -23,3 +23,10 @@ pyright = "^1.1.406"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 120
+
+[tool.isort]
+line_length=120
+length_sort=true

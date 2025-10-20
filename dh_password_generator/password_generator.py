@@ -5,8 +5,8 @@ __author__: str = "Digital Horizons"
 
 from random import choice
 
-from dh_password_generator.console_manager import ConsoleManager
 from dh_password_generator.consts import Symbols, Settings
+from dh_password_generator.console_manager import ConsoleManager
 from dh_password_generator.generator_params import GeneratorParams
 
 
@@ -19,6 +19,7 @@ class PasswordGenerator:
     :ivar _console_manager: консольный менеджер для вывода информации
     :type _console_manager: ConsoleManager
     """
+
     def __init__(self) -> None:
         self._params: GeneratorParams = GeneratorParams()
         self._console_manager = ConsoleManager()
@@ -26,7 +27,7 @@ class PasswordGenerator:
     def process(self) -> None:
         """Основной метод запуска процесса генерации"""
         self._console_manager.permanent_print(
-            f'Будет сгенерирован пароль из '
+            f"Будет сгенерирован пароль из "
             f'"{self._params.length}" символов из '
             f'{", ".join(self._params.human_symbols_group)}'
         )
@@ -95,9 +96,7 @@ class PasswordGenerator:
             temp_group: str = choice(self._params.symbols_group)
 
             if used_groups.count(temp_group) >= (
-                len(self._params.symbols_group) / 2 * (
-                    self._params.length / len(self._params.symbols_group)
-                )
+                len(self._params.symbols_group) / 2 * (self._params.length / len(self._params.symbols_group))
             ):
                 continue
 
