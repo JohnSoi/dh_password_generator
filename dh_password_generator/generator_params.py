@@ -86,7 +86,11 @@ class GeneratorParams:
         )
 
         for args in CONSOLE_ARGS_MAP:
-            parser.add_argument(*args["flags"], type=args["type"], help=args["help"])
+            parser.add_argument(
+                *args["flags"], # pyright:ignore
+                type=args["type"], # pyright:ignore
+                help=(args["help"]) # pyright:ignore
+            )
 
         return parser
 
@@ -103,7 +107,7 @@ class GeneratorParams:
         length: int | None = console_args.length
 
         if length is None:
-            length: int = DefaultValueParams.LENGTH
+            length = DefaultValueParams.LENGTH
 
         if not length:
             raise ValueError("Нельзя сгенерировать пароль с 0 длинной")
@@ -132,7 +136,7 @@ class GeneratorParams:
             need_add_group: bool | None = getattr(console_args, group.lower())
 
             if need_add_group is None:
-                need_add_group: bool = getattr(DefaultValueParams, group)
+                need_add_group = getattr(DefaultValueParams, group)
 
             if need_add_group:
                 symbols_group.append(group)

@@ -4,7 +4,7 @@
 __author__: str = "Digital Horizons"
 
 import string
-from typing import Callable
+from typing import Callable, LiteralString, Literal
 
 
 class Settings:
@@ -49,16 +49,16 @@ class Symbols:
     Списки символом по группам
 
     :cvar ALPHABET: буквы для генерации
-    :type ALPHABET: list[str]
+    :type ALPHABET: LiteralString
     :cvar DIGITS: цифры для генерации
-    :type DIGITS: list[str]
+    :type DIGITS: Literal['0123456789']
     :cvar SPECIAL: специальные символы для генерации
-    :type SPECIAL: list[str]
+    :type SPECIAL: Literal['!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~']
     """
 
-    ALPHABET: list[str] = string.ascii_letters
-    DIGITS: list[str] = string.digits
-    SPECIAL: list[str] = string.punctuation
+    ALPHABET: LiteralString = string.ascii_letters
+    DIGITS: Literal['0123456789'] = string.digits
+    SPECIAL: Literal['!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~'] = string.punctuation
 
 
 # Человекочитаемы названия для групп
